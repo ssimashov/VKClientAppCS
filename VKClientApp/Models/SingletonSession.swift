@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Session {
+class Session {
     
     static let instance = Session()
     
