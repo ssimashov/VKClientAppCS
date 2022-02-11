@@ -37,16 +37,17 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="zkq-9d-t4S" id="PyK-4a-af1"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="moveToLogin" id="dbO-zd-iWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHI-WB-H1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-958" y="-337"/>
+            <point key="canvasLocation" x="-986" y="-360"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,6 +188,7 @@
                             <constraint firstItem="95U-Jm-ME3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sms-vN-Pr8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="8R0-On-EJw"/>
                     <connections>
                         <outlet property="firstRoundView" destination="ZrB-Zc-510" id="KML-fJ-R0C"/>
                         <outlet property="imageView" destination="dY7-7M-ikT" id="lwt-FK-VIc"/>
