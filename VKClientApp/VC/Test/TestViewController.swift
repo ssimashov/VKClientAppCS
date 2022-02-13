@@ -14,12 +14,16 @@ class TestViewController: UIViewController {
     
     @IBOutlet weak var label2: UILabel!
     
-    
+    private let networkService = NetworkService()
+    let query = "test"
     override func viewDidLoad() {
         super.viewDidLoad()
         label1.text = Session.instance.token
         label2.text = String( Session.instance.userId)
-    
+      //  networkService.fetchUsers()
+       // networkService.fetchPhotos()
+     //   networkService.fetchGroups()
+        networkService.fetchSearchGroups(query: query)
     }
     
 

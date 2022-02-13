@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
    
     let toOrangeSegue = "toTabBarController"
     
+    
+    
     func dotsAnimate(exitAfter: Int, currentCount: Int){
         let timeInterval: CGFloat = 1
         UIView.animate(withDuration: timeInterval) {[weak self] in
@@ -86,6 +88,8 @@ class LoginViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         recognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(recognizer)
+        
+        
     }
     
 
