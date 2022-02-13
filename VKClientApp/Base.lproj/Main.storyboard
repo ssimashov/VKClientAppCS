@@ -419,6 +419,7 @@
                     <connections>
                         <segue destination="7sR-GQ-hUc" kind="relationship" relationship="viewControllers" id="UDI-m4-KwR"/>
                         <segue destination="SMY-EC-w9p" kind="relationship" relationship="viewControllers" id="MBD-Gq-N3H"/>
+                        <segue destination="V6a-Ge-N3f" kind="relationship" relationship="viewControllers" id="IAY-UR-vEl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJ6-m0-ZTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -463,6 +464,56 @@
             </objects>
             <point key="canvasLocation" x="1606" y="3"/>
         </scene>
+        <!--Test-->
+        <scene sceneID="ckL-wU-coL">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="V6a-Ge-N3f" customClass="TestViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVq-0l-4GD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqu-pX-f3N">
+                                <rect key="frame" x="82" y="386" width="250" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="DGu-6t-1eq"/>
+                                    <constraint firstAttribute="height" constant="70" id="osb-DY-aW9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxY-4F-VyJ">
+                                <rect key="frame" x="82" y="506" width="250" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Nvc-AA-nHl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Ojw-PL-UUW"/>
+                                    <constraint firstAttribute="width" constant="250" id="QPb-1K-kmS"/>
+                                    <constraint firstAttribute="height" constant="70" id="oh2-bG-H14"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6v-Ub-WHk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XxY-4F-VyJ" firstAttribute="centerX" secondItem="mVq-0l-4GD" secondAttribute="centerX" id="5yI-t8-k1J"/>
+                            <constraint firstItem="fqu-pX-f3N" firstAttribute="centerY" secondItem="mVq-0l-4GD" secondAttribute="centerY" id="VTN-PU-8Am"/>
+                            <constraint firstItem="XxY-4F-VyJ" firstAttribute="top" secondItem="fqu-pX-f3N" secondAttribute="bottom" constant="50" id="xuI-FQ-dL9"/>
+                            <constraint firstItem="fqu-pX-f3N" firstAttribute="centerX" secondItem="mVq-0l-4GD" secondAttribute="centerX" id="z8V-BW-FkM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Test" image="trash" catalog="system" selectedImage="trash.fill" id="pVY-dQ-GHb"/>
+                    <connections>
+                        <outlet property="label1" destination="fqu-pX-f3N" id="xqm-yC-vab"/>
+                        <outlet property="label2" destination="XxY-4F-VyJ" id="svr-OU-s0z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q5e-N9-Ido" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605.7971014492755" y="675"/>
+        </scene>
     </scenes>
     <resources>
         <image name="VK_Full_Logo" width="5480" height="960"/>
@@ -470,6 +521,8 @@
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

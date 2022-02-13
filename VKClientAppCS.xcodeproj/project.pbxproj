@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F603EC3D27B6F075000B7DFC /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F603EC3C27B6F075000B7DFC /* VKLoginViewController.swift */; };
 		F6137B23276FB445002ED134 /* CustomMoveToPhotoSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6137B22276FB445002ED134 /* CustomMoveToPhotoSegue.swift */; };
+		F616CD7F27B8F503009B04E1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616CD7E27B8F503009B04E1 /* TestViewController.swift */; };
 		F61AE2B9274D5C4B00F496FA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61AE2B8274D5C4B00F496FA /* Friend.swift */; };
 		F61AE2BB274D5C5800F496FA /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61AE2BA274D5C5800F496FA /* Group.swift */; };
 		F61AE2C1274D671D00F496FA /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61AE2C0274D671D00F496FA /* FriendsViewController.swift */; };
@@ -38,6 +39,7 @@
 		D816120DE3CE9A3B589E3137 /* Pods-VKClientAppCS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientAppCS.release.xcconfig"; path = "Target Support Files/Pods-VKClientAppCS/Pods-VKClientAppCS.release.xcconfig"; sourceTree = "<group>"; };
 		F603EC3C27B6F075000B7DFC /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		F6137B22276FB445002ED134 /* CustomMoveToPhotoSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoveToPhotoSegue.swift; sourceTree = "<group>"; };
+		F616CD7E27B8F503009B04E1 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F61AE2B8274D5C4B00F496FA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		F61AE2BA274D5C5800F496FA /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F61AE2C0274D671D00F496FA /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 			path = Segue;
 			sourceTree = "<group>";
 		};
+		F616CD7D27B8F4EA009B04E1 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				F616CD7E27B8F503009B04E1 /* TestViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		F61AE2CA274E9BFF00F496FA /* AllGroups */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		F6334D62274D597D00EE301D /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				F616CD7D27B8F4EA009B04E1 /* Test */,
 				F6137B21276FB421002ED134 /* Segue */,
 				F64F8689276685DE0068CF89 /* LikeControl */,
 				F64F8682275F93B00068CF89 /* PhotoViewController */,
@@ -347,6 +358,7 @@
 			files = (
 				F61AE2C1274D671D00F496FA /* FriendsViewController.swift in Sources */,
 				F61AE2CC274E9C2200F496FA /* AllGroupsViewController.swift in Sources */,
+				F616CD7F27B8F503009B04E1 /* TestViewController.swift in Sources */,
 				F64F868B276686180068CF89 /* LikeControlView.swift in Sources */,
 				F6F924C4273FF7D100D674F8 /* LoginViewController.swift in Sources */,
 				F6137B23276FB445002ED134 /* CustomMoveToPhotoSegue.swift in Sources */,
