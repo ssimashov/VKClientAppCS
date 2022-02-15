@@ -16,14 +16,15 @@ class TestViewController: UIViewController {
     
     private let networkService = NetworkService()
     let query = "test"
+    let userID = Session.instance.userId
     override func viewDidLoad() {
         super.viewDidLoad()
         label1.text = Session.instance.token
         label2.text = String( Session.instance.userId)
-      //  networkService.fetchUsers()
+        networkService.fetchUsers(userID: userID)
        // networkService.fetchPhotos()
      //   networkService.fetchGroups()
-        networkService.fetchSearchGroups(query: query)
+//        networkService.fetchSearchGroups(query: query)
     }
     
 

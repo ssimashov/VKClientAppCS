@@ -30,14 +30,14 @@ final class NetworkService {
         return constructor
     }()
     
-    func fetchUsers(){
+    func fetchUsers(userID: Int){
         
         var constructor = urlConstructor
-        
+        let userID = userID
         constructor.path = "/method/friends.get"
         constructor.queryItems = [
-            URLQueryItem(name: "user_id", value: String(Session.instance.userId)),
-         //   URLQueryItem(name: "fields", value: "bdate"),
+            URLQueryItem(name: "user_id", value: String(userID)),
+            URLQueryItem(name: "fields", value: "photo_100"),
             URLQueryItem(name: "access_token", value: Session.instance.token),
             URLQueryItem(name: "v", value: "5.131")
         ]
@@ -52,15 +52,18 @@ final class NetworkService {
                 error == nil,
                 let data = data
             else { return }
-            
-            let json = try? JSONSerialization.jsonObject(
-                with: data,
-                options: .allowFragments)
-            print(json)
+            do {
+                let friendResponse = try JSONDecoder().decode(
+                    FriendsResponse.self,
+                    from: data)
+                print(friendResponse)
+            } catch {
+                print(error)
+            }
         }
-        
         task.resume()
     }
+    
     
     func fetchPhotos(){
         
@@ -127,7 +130,7 @@ final class NetworkService {
     func fetchSearchGroups(query: String){
         
         var constructor = urlConstructor
-    
+        
         
         constructor.path = "/method/groups.search"
         constructor.queryItems = [
