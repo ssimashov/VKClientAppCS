@@ -16,7 +16,7 @@ class GalleryViewController: UIViewController {
     let reuseIdentifier = "reuseIdentifier"
     let moveToPhoto = "moveToPhoto"
     
-    
+    var friendID = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,25 +49,25 @@ extension GalleryViewController: UICollectionViewDataSource {
 }
 
 
-extension GalleryViewController: UICollectionViewDelegate {
-   
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == moveToPhoto,
-        let photo = sender as? UIImage,
-           let destination = segue.destination as? PhotoViewController {
-            destination.photo = photo
-           
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let photo = UIImage(named: sourceArray[indexPath.item]) {
-        performSegue(withIdentifier: moveToPhoto, sender: photo)
-        }
-}
-    
-
-}
+//extension GalleryViewController: UICollectionViewDelegate {
+//   
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == moveToPhoto,
+//        let photo = sender as? UIImage,
+//           let destination = segue.destination as? PhotoViewController {
+//            destination.photo = photo
+//           
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        if let photo = UIImage(named: sourceArray[indexPath.item]) {
+//        performSegue(withIdentifier: moveToPhoto, sender: photo)
+//        }
+//}
+//    
+//
+//}
 
 
 

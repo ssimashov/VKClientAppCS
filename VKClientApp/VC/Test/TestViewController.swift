@@ -17,7 +17,8 @@ class TestViewController: UIViewController {
     private let networkService = NetworkService()
 //    let query = "test"
     let userID = Session.instance.userId
-    private var friends = [Friend0]()
+//    private var friends = [Friend0]()
+    private var photos = [Photos]()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,24 @@ class TestViewController: UIViewController {
 //            case .failure(let error):
 //                print(error)
 //            }
-//            
+//
 //        }
-       // networkService.fetchPhotos()
+       
+        
+        
+//        networkService.fetchPhotos(userID: userID){
+//            [weak self] result in
+//                switch result {
+//                case .success(let photos):
+//                    self?.photos = photos
+//                    print(photos)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//        }
+//        
+//        
+        
      //   networkService.fetchGroups()
 //        networkService.fetchSearchGroups(query: query)
     }

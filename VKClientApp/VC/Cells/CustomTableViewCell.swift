@@ -35,17 +35,17 @@ class CustomTableViewCell: UITableViewCell {
         
     }
 
-    func configure(image: UIImage?, text: String?) {
-        avatarImageView.image = image
-        nameLabel.text = text
-    }
+//    func configure(image: UIImage?, text: String?) {
+//        avatarImageView.image = image
+//        nameLabel.text = text
+//    }
 
-    func configure(friend: Friend) {
-        if let imageName = friend.avatar {
-            avatarImageView.image = UIImage(named: imageName)
-        }
-        nameLabel.text = friend.name
-    }
+//    func configure(friend: Friend) {
+//        if let imageName = friend.avatar {
+//            avatarImageView.image = UIImage(named: imageName)
+//        }
+//        nameLabel.text = friend.name
+//    }
 
     func configure(group: Group) {
         if let imageName = group.avatar {

@@ -8,9 +8,8 @@
 import Foundation
 
 final class NetworkService {
-    let url = URL(string: "https://api.vk.com/method/METHOD?PARAMS&access_token=TOKEN&v=V")
+//    let url = URL(string: "https://api.vk.com/method/METHOD?PARAMS&access_token=TOKEN&v=V")
     let session = URLSession.shared
-    
     
     lazy var mySession = URLSession(configuration: configuration)
     let configuration: URLSessionConfiguration = {
@@ -65,13 +64,13 @@ final class NetworkService {
     }
     
     
-    func fetchPhotos(){
+    func fetchPhotos(userID: Int, completion: @escaping (Result<[Photos], Error>) -> Void) {
         
         var constructor = urlConstructor
-        
+        let userID = userID
         constructor.path = "/method/photos.getAll"
         constructor.queryItems = [
-            URLQueryItem(name: "owner_id", value: String(Session.instance.userId)),
+            URLQueryItem(name: "owner_id", value: String(userID)),
             URLQueryItem(name: "access_token", value: Session.instance.token),
             URLQueryItem(name: "v", value: "5.131")
         ]
@@ -86,13 +85,15 @@ final class NetworkService {
                 error == nil,
                 let data = data
             else { return }
-            
-            let json = try? JSONSerialization.jsonObject(
-                with: data,
-                options: .allowFragments)
-            print(json)
+            do {
+                let photosResponse = try JSONDecoder().decode(
+                    PhotosResponce.self,
+                    from: data)
+                completion(.success(photosResponse.response.photos))
+            } catch {
+                completion(.failure(error))
+            }
         }
-        
         task.resume()
     }
     
