@@ -30,7 +30,7 @@ final class NetworkService {
         return constructor
     }()
     
-    func fetchUsers(userID: Int){
+    func fetchUsers(userID: Int, completion: @escaping (Result<[Friend0], Error>) -> Void){
         
         var constructor = urlConstructor
         let userID = userID
@@ -56,9 +56,9 @@ final class NetworkService {
                 let friendResponse = try JSONDecoder().decode(
                     FriendsResponse.self,
                     from: data)
-                print(friendResponse)
+                completion(.success(friendResponse.response.friends))
             } catch {
-                print(error)
+                completion(.failure(error))
             }
         }
         task.resume()

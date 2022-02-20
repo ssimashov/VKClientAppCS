@@ -54,4 +54,13 @@ class CustomTableViewCell: UITableViewCell {
         nameLabel.text = group.name
     }
 
+    func configure(model: Friend0){
+        self.nameLabel.text = model.friendFirstName
+        let imgUrl = URL(string: model.friendPhoto)
+        let data = try? Data(contentsOf: imgUrl!)
+        if let imageData = data {
+            self.avatarImageView.image = UIImage(data: imageData)
+        }
+    }
 }
+
