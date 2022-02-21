@@ -52,7 +52,6 @@ class FriendsViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
     

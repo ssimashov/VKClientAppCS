@@ -43,9 +43,9 @@ final class NetworkService {
         
         guard let url = constructor.url else { return }
         
-        let task = session.dataTask(with: url) { data, responce, error in
-            if let responce = responce as? HTTPURLResponse {
-                print(responce.statusCode)
+        let task = session.dataTask(with: url) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                print(response.statusCode)
             }
             guard
                 error == nil,
@@ -77,9 +77,9 @@ final class NetworkService {
         
         guard let url = constructor.url else { return }
         
-        let task = session.dataTask(with: url) { data, responce, error in
-            if let responce = responce as? HTTPURLResponse {
-                print(responce.statusCode)
+        let task = session.dataTask(with: url) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                print(response.statusCode)
             }
             guard
                 error == nil,
