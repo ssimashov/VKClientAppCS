@@ -113,12 +113,12 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
-		F616CD8027B95063009B04E1 /* Service */ = {
+		F616CD8027B95063009B04E1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				F616CD8127B95083009B04E1 /* NetworkService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		F61AE2CA274E9BFF00F496FA /* AllGroups */ = {
@@ -143,7 +143,6 @@
 		F6334D62274D597D00EE301D /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				F616CD8027B95063009B04E1 /* Service */,
 				F616CD7D27B8F4EA009B04E1 /* Test */,
 				F6137B21276FB421002ED134 /* Segue */,
 				F64F8689276685DE0068CF89 /* LikeControl */,
@@ -240,6 +239,7 @@
 		F6F924AE273EE4C000D674F8 /* VKClientApp */ = {
 			isa = PBXGroup;
 			children = (
+				F616CD8027B95063009B04E1 /* Services */,
 				F6334D62274D597D00EE301D /* VC */,
 				F6334D61274D596C00EE301D /* Models */,
 				F6F924AF273EE4C000D674F8 /* AppDelegate.swift */,

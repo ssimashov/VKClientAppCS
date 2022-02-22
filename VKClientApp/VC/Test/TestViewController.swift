@@ -15,10 +15,13 @@ class TestViewController: UIViewController {
     @IBOutlet weak var label2: UILabel!
     
     private let networkService = NetworkService()
+    
+    private let userID = Session.instance.userId
 //    let query = "test"
-    let userID = Session.instance.userId
+    
 //    private var friends = [Friend0]()
     private var photos = [Photos]()
+    private var groups = [Groups]()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,16 @@ class TestViewController: UIViewController {
 //        
 //        
         
-     //   networkService.fetchGroups()
+        networkService.fetchGroups(userID: userID){
+            [weak self] result in
+                        switch result {
+                        case .success(let groups):
+                            self?.groups = groups
+                            print(groups)
+                        case .failure(let error):
+                            print(error)
+                        }
+        }
 //        networkService.fetchSearchGroups(query: query)
     }
     

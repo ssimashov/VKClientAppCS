@@ -33,6 +33,7 @@ final class NetworkService {
         
         var constructor = urlConstructor
         let userID = userID
+        
         constructor.path = "/method/friends.get"
         constructor.queryItems = [
             URLQueryItem(name: "user_id", value: String(userID)),
@@ -96,14 +97,17 @@ final class NetworkService {
         }
         task.resume()
     }
+// MARK: - fetching groups
     
-    func fetchGroups(){
+    func fetchGroups(userID:Int, completion: @escaping (Result<[Groups], Error>) -> Void){
         
         var constructor = urlConstructor
+        let userID = userID
         
         constructor.path = "/method/groups.get"
         constructor.queryItems = [
-            URLQueryItem(name: "owner_id", value: String(Session.instance.userId)),
+            URLQueryItem(name: "owner_id", value: String(userID)),
+            URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "access_token", value: Session.instance.token),
             URLQueryItem(name: "v", value: "5.131")
         ]
@@ -119,10 +123,14 @@ final class NetworkService {
                 let data = data
             else { return }
             
-            let json = try? JSONSerialization.jsonObject(
-                with: data,
-                options: .allowFragments)
-            print(json)
+            do {
+                let groupsResponse = try JSONDecoder().decode(
+                    GroupsResponse.self,
+                    from: data)
+                completion(.success(groupsResponse.response.groups))
+            } catch {
+                completion(.failure(error))
+            }
         }
         
         task.resume()
