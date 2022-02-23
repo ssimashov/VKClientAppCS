@@ -17,7 +17,7 @@ class TestViewController: UIViewController {
     private let networkService = NetworkService()
     
     private let userID = Session.instance.userId
-//    let query = "test"
+  let query = ""
     
 //    private var friends = [Friend0]()
     private var photos = [Photos]()
@@ -53,16 +53,16 @@ class TestViewController: UIViewController {
 //        
 //        
         
-        networkService.fetchGroups(userID: userID){
-            [weak self] result in
-                        switch result {
-                        case .success(let groups):
-                            self?.groups = groups
-                            print(groups)
-                        case .failure(let error):
-                            print(error)
-                        }
-        }
+//        networkService.fetchGroups(userID: userID){
+//            [weak self] result in
+//                        switch result {
+//                        case .success(let groups):
+//                            self?.groups = groups
+//                            print(groups)
+//                        case .failure(let error):
+//                            print(error)
+//                        }
+////        }
 //        networkService.fetchSearchGroups(query: query)
     }
     

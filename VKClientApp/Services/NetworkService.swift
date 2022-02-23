@@ -136,10 +136,10 @@ final class NetworkService {
         task.resume()
     }
 // MARK: - fetching all groups
-    func fetchSearchGroups(query: String){
+    func fetchAllGroups(query: String, completion: @escaping (Result<[AllGroups], Error>) -> Void){
         
         var constructor = urlConstructor
-        
+//        let query = query
         
         constructor.path = "/method/groups.search"
         constructor.queryItems = [
@@ -159,10 +159,14 @@ final class NetworkService {
                 let data = data
             else { return }
             
-            let json = try? JSONSerialization.jsonObject(
-                with: data,
-                options: .allowFragments)
-            print(json)
+            do {
+                let allGroupsResponse = try JSONDecoder().decode(
+                    AllGroupsResponse.self,
+                    from: data)
+                completion(.success(allGroupsResponse.response.groups))
+            } catch {
+                completion(.failure(error))
+            }
         }
         
         task.resume()

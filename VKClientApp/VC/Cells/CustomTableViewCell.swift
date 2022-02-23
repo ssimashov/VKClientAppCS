@@ -53,11 +53,21 @@ class CustomTableViewCell: UITableViewCell {
         let data = try? Data(contentsOf: imgUrl!)
         if let imageData = data {
             self.avatarImageView.image = UIImage(data: imageData)
-        }    }
+        }
+    }
 
     func configure(model: Friend0){
         self.nameLabel.text = model.friendFirstName
         let imgUrl = URL(string: model.friendPhoto)
+        let data = try? Data(contentsOf: imgUrl!)
+        if let imageData = data {
+            self.avatarImageView.image = UIImage(data: imageData)
+        }
+    }
+    
+    func configure(model: AllGroups) {
+        self.nameLabel.text = model.groupName
+        let imgUrl = URL(string: model.groupPhoto)
         let data = try? Data(contentsOf: imgUrl!)
         if let imageData = data {
             self.avatarImageView.image = UIImage(data: imageData)

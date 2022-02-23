@@ -12,13 +12,23 @@ class AllGroupsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
 //    var sourceArray = [Groups]()
-//    
-//    let customCellReuseIdentifier = "customCellReuseIdentifier"
-//    let heightCustomTableViewCell:CGFloat = 150
-//    
-//    
-//    
-//    
+    
+    private var allGroups = [AllGroups](){
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    let query = "test"
+    
+    let customCellReuseIdentifier = "customCellReuseIdentifier"
+    let heightCustomTableViewCell:CGFloat = 150
+    
+    
+    
+    
 //    func groupFillData() {
 //        let group1 = Group(name: "Президенты", avatar: "GroupAvatar1")
 //        let group2 = Group(name: "Министры", avatar: "GroupAvatar2")
@@ -50,46 +60,56 @@ class AllGroupsViewController: UIViewController {
 //        sourceArray.append(group13)
 //     
 //    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: customCellReuseIdentifier)
+    private let networkService = NetworkService()
+    private let userID = Session.instance.userId
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: customCellReuseIdentifier)
 //        groupFillData()
-//    }
-//
-//
-//}
-//
-//extension AllGroupsViewController: UITableViewDataSource {
-//    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return sourceArray.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-//    
-//        cell.configure(group: sourceArray[indexPath.row])
-//        return cell
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return heightCustomTableViewCell
-//    }
-//}
-//
-//    extension AllGroupsViewController: UITableViewDelegate {
+        
+        networkService.fetchAllGroups(query: query) { [weak self] result in
+            switch result {
+            case .success(let allGroups):
+                self?.allGroups = allGroups
+                print(allGroups)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+extension AllGroupsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allGroups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
+    
+        cell.configure(model: allGroups[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return heightCustomTableViewCell
+    }
+}
+
+    extension AllGroupsViewController: UITableViewDelegate {
 //        
 //  
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 ////        print(sourceArray[indexPath.row].name)
 //        NotificationCenter.default.post(name: NSNotification.Name("groupSelectedNotification"), object: sourceArray[indexPath.row])
-//    }
-}
+    }
+
 
