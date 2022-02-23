@@ -11,7 +11,6 @@ class FriendsViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
 //    var sourceArray = [Friend0]()

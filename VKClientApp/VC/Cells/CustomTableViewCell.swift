@@ -47,12 +47,13 @@ class CustomTableViewCell: UITableViewCell {
 //        nameLabel.text = friend.name
 //    }
 
-    func configure(group: Group) {
-        if let imageName = group.avatar {
-            avatarImageView.image = UIImage(named: imageName)
-        }
-        nameLabel.text = group.name
-    }
+    func configure(model: Groups) {
+        self.nameLabel.text = model.groupName
+        let imgUrl = URL(string: model.groupPhoto)
+        let data = try? Data(contentsOf: imgUrl!)
+        if let imageData = data {
+            self.avatarImageView.image = UIImage(data: imageData)
+        }    }
 
     func configure(model: Friend0){
         self.nameLabel.text = model.friendFirstName

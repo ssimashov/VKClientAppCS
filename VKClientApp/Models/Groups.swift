@@ -4,10 +4,10 @@
 //
 //  Created by Sergey Simashov on 23.11.2021.
 //
-struct Group {
-    var name: String
-    var avatar: String?
-}
+//struct Group {
+//    var name: String
+//    var avatar: String?
+//}
 
 struct GroupsResponse: Codable {
     let response: GroupsItemsResponse

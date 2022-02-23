@@ -135,7 +135,7 @@ final class NetworkService {
         
         task.resume()
     }
-    
+// MARK: - fetching all groups
     func fetchSearchGroups(query: String){
         
         var constructor = urlConstructor
