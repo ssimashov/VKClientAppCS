@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lif-1Z-Qqp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -10,9 +10,44 @@
     </dependencies>
     <scenes>
         <!--Login View Controller-->
+        <scene sceneID="WN7-xP-9fn">
+            <objects>
+                <viewController id="Lif-1Z-Qqp" customClass="VKLoginViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RqH-dZ-3nP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkq-9d-t4S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1yF-X7-W6Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zkq-9d-t4S" firstAttribute="leading" secondItem="1yF-X7-W6Q" secondAttribute="leading" id="FhL-Zu-3lT"/>
+                            <constraint firstItem="1yF-X7-W6Q" firstAttribute="trailing" secondItem="zkq-9d-t4S" secondAttribute="trailing" id="LVX-9f-yd4"/>
+                            <constraint firstItem="1yF-X7-W6Q" firstAttribute="bottom" secondItem="zkq-9d-t4S" secondAttribute="bottom" id="Tlr-p2-WYm"/>
+                            <constraint firstItem="zkq-9d-t4S" firstAttribute="top" secondItem="1yF-X7-W6Q" secondAttribute="top" id="oOw-gS-2X2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="zkq-9d-t4S" id="PyK-4a-af1"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="moveToLogin" id="dbO-zd-iWV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LHI-WB-H1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-986" y="-360"/>
+        </scene>
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,6 +141,15 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqU-uK-NX4">
+                                                <rect key="frame" x="141" y="735" width="139" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Выйти"/>
+                                                <connections>
+                                                    <segue destination="F7i-q6-VLN" kind="unwind" unwindAction="unwindToVKLogin:" id="Cgk-y1-TV1"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -153,6 +197,7 @@
                             <constraint firstItem="95U-Jm-ME3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sms-vN-Pr8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="8R0-On-EJw"/>
                     <connections>
                         <outlet property="firstRoundView" destination="ZrB-Zc-510" id="KML-fJ-R0C"/>
                         <outlet property="imageView" destination="dY7-7M-ikT" id="lwt-FK-VIc"/>
@@ -166,13 +211,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="F7i-q6-VLN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1.4492753623188408" y="-359.59821428571428"/>
         </scene>
         <!--Groups-->
         <scene sceneID="gMI-Zu-bF6">
             <objects>
-                <viewController id="eiM-qn-Ked" customClass="GroupsViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eiM-qn-Ked" customClass="GroupsViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4R3-VR-L6l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +256,7 @@
         <!--All Groups View Controller-->
         <scene sceneID="Bxh-EB-Zb1">
             <objects>
-                <viewController id="jVT-qS-FWO" customClass="AllGroupsViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jVT-qS-FWO" customClass="AllGroupsViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZPL-b3-cHx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -241,7 +287,7 @@
         <!--Friends-->
         <scene sceneID="OAU-EL-bbc">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="UjC-Z6-VT5" customClass="FriendsViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="UjC-Z6-VT5" customClass="FriendsViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gBS-8Y-uk5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,7 +328,7 @@
         <!--Gallery View Controller-->
         <scene sceneID="4gp-sv-ia5">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Ek3-7J-dfZ" customClass="GalleryViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Ek3-7J-dfZ" customClass="GalleryViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tpj-su-BgB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -305,7 +351,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <segue destination="FDP-vZ-kBg" kind="show" identifier="moveToPhoto" customClass="CustomMoveToPhotoSegue" customModule="VKClientApp" customModuleProvider="target" id="sQ6-8o-v3u"/>
+                                            <segue destination="FDP-vZ-kBg" kind="show" identifier="moveToPhoto" customClass="CustomMoveToPhotoSegue" customModule="VKClientAppCS" customModuleProvider="target" id="sQ6-8o-v3u"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -332,7 +378,7 @@
         <!--Photo View Controller-->
         <scene sceneID="ax5-Jg-95p">
             <objects>
-                <viewController id="FDP-vZ-kBg" customClass="PhotoViewController" customModule="VKClientApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FDP-vZ-kBg" customClass="PhotoViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ib-ld-TIY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,6 +419,7 @@
                     <connections>
                         <segue destination="7sR-GQ-hUc" kind="relationship" relationship="viewControllers" id="UDI-m4-KwR"/>
                         <segue destination="SMY-EC-w9p" kind="relationship" relationship="viewControllers" id="MBD-Gq-N3H"/>
+                        <segue destination="V6a-Ge-N3f" kind="relationship" relationship="viewControllers" id="IAY-UR-vEl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJ6-m0-ZTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -417,6 +464,56 @@
             </objects>
             <point key="canvasLocation" x="1606" y="3"/>
         </scene>
+        <!--Test-->
+        <scene sceneID="ckL-wU-coL">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="V6a-Ge-N3f" customClass="TestViewController" customModule="VKClientAppCS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVq-0l-4GD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqu-pX-f3N">
+                                <rect key="frame" x="82" y="386" width="250" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="DGu-6t-1eq"/>
+                                    <constraint firstAttribute="height" constant="70" id="osb-DY-aW9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxY-4F-VyJ">
+                                <rect key="frame" x="82" y="506" width="250" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Nvc-AA-nHl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Ojw-PL-UUW"/>
+                                    <constraint firstAttribute="width" constant="250" id="QPb-1K-kmS"/>
+                                    <constraint firstAttribute="height" constant="70" id="oh2-bG-H14"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6v-Ub-WHk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XxY-4F-VyJ" firstAttribute="centerX" secondItem="mVq-0l-4GD" secondAttribute="centerX" id="5yI-t8-k1J"/>
+                            <constraint firstItem="fqu-pX-f3N" firstAttribute="centerY" secondItem="mVq-0l-4GD" secondAttribute="centerY" id="VTN-PU-8Am"/>
+                            <constraint firstItem="XxY-4F-VyJ" firstAttribute="top" secondItem="fqu-pX-f3N" secondAttribute="bottom" constant="50" id="xuI-FQ-dL9"/>
+                            <constraint firstItem="fqu-pX-f3N" firstAttribute="centerX" secondItem="mVq-0l-4GD" secondAttribute="centerX" id="z8V-BW-FkM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Test" image="trash" catalog="system" selectedImage="trash.fill" id="pVY-dQ-GHb"/>
+                    <connections>
+                        <outlet property="label1" destination="fqu-pX-f3N" id="xqm-yC-vab"/>
+                        <outlet property="label2" destination="XxY-4F-VyJ" id="svr-OU-s0z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q5e-N9-Ido" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605.7971014492755" y="675"/>
+        </scene>
     </scenes>
     <resources>
         <image name="VK_Full_Logo" width="5480" height="960"/>
@@ -424,6 +521,8 @@
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
