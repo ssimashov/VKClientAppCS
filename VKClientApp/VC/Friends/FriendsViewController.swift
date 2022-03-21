@@ -23,6 +23,9 @@ class FriendsViewController: UIViewController {
         }
     }
     
+    var filteredFriends = [Friend0]()
+    var isSearch: Bool = false
+    
     
     let customCellReuseIdentifier = "customCellReuseIdentifier"
     let heightCustomTableViewCell:CGFloat = 150
@@ -40,8 +43,8 @@ class FriendsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        //        friends = sourceArray
-        //        searchBar.delegate = self
+
+                
         
         networkService.fetchUsers(userID: userID) { [weak self] result in
             switch result {
@@ -52,6 +55,10 @@ class FriendsViewController: UIViewController {
                 print(error)
             }
         }
+        
+        searchBar.delegate = self
+        filteredFriends = friends
+        
     }
     
 }
@@ -77,13 +84,27 @@ extension FriendsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        
+        if (isSearch){
+        return filteredFriends.count
+        }
+        else {
+            return friends.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-            cell.configure(model: friends[indexPath.row])
+        
+        if (isSearch){
+            cell.configure(model: filteredFriends[indexPath.row])
         //        cell.configure(friend: friendsArray[indexPath.row])
+        }
+        
+        else {
+            cell.configure(model: friends[indexPath.row])
+        }
+        
         return cell
     }
     
@@ -112,19 +133,22 @@ extension FriendsViewController: UITableViewDelegate {
 }
 
 
-//extension FriendsViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchText.isEmpty {
-//            friends = sourceArray
-//        }
-//        else {
-//            friends = sourceArray.filter({ friendItem in
-//                friendItem.friendFirstName.lowercased().contains(searchText.lowercased())
-//            })
-//        }
-//        tableView.reloadData()
-//    }
-//}
+extension FriendsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredFriends = friends
+            isSearch = false
+         
+        }
+        else {
+            isSearch = true
+            filteredFriends = friends.filter({ friendItem in
+                friendItem.friendFirstName.lowercased().contains(searchText.lowercased())
+            })
+        }
+        self.tableView.reloadData()
+    }
+}
 
 
 

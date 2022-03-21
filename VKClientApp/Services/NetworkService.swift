@@ -8,7 +8,7 @@
 import Foundation
 
 final class NetworkService {
-//    let url = URL(string: "https://api.vk.com/method/METHOD?PARAMS&access_token=TOKEN&v=V")
+
     let session = URLSession.shared
     
     lazy var mySession = URLSession(configuration: configuration)

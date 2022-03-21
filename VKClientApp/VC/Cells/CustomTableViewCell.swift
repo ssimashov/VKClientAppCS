@@ -57,7 +57,7 @@ class CustomTableViewCell: UITableViewCell {
     }
 
     func configure(model: Friend0){
-        self.nameLabel.text = model.friendFirstName
+        self.nameLabel.text = model.friendFirstName + " " + model.friendLastName
         let imgUrl = URL(string: model.friendPhoto)
         let data = try? Data(contentsOf: imgUrl!)
         if let imageData = data {

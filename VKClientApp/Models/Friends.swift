@@ -28,14 +28,16 @@ extension FriendsItemsResponse: Codable {
 struct Friend0 {
     let friendID: Int
     let friendFirstName: String
+    let friendLastName: String
     let friendPhoto: String
 }
 
 
 extension Friend0: Codable {
     enum CodingKeys: String, CodingKey {
-               case friendID = "id"
-               case friendFirstName = "first_name"
-               case friendPhoto = "photo_100"
+        case friendID = "id"
+        case friendFirstName = "first_name"
+        case friendLastName = "last_name"
+        case friendPhoto = "photo_100"
     }
 }
