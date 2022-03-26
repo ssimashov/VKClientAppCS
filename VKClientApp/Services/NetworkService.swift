@@ -29,7 +29,7 @@ final class NetworkService {
         return constructor
     }()
     
-    func fetchUsers(userID: Int, completion: @escaping (Result<[Friend0], Error>) -> Void){
+    func fetchUsers(userID: Int, completion: @escaping (Result<[FriendItem], Error>) -> Void){
         
         var constructor = urlConstructor
         let userID = userID
@@ -99,7 +99,7 @@ final class NetworkService {
     }
 // MARK: - fetching groups
     
-    func fetchGroups(userID:Int, completion: @escaping (Result<[Groups], Error>) -> Void){
+    func fetchGroups(userID:Int, completion: @escaping (Result<[GroupsItems], Error>) -> Void){
         
         var constructor = urlConstructor
         let userID = userID
@@ -136,7 +136,7 @@ final class NetworkService {
         task.resume()
     }
 // MARK: - fetching all groups
-    func fetchAllGroups(query: String, completion: @escaping (Result<[AllGroups], Error>) -> Void){
+    func fetchAllGroups(query: String, completion: @escaping (Result<[GroupsItems], Error>) -> Void){
         
         var constructor = urlConstructor
 //        let query = query
@@ -161,7 +161,7 @@ final class NetworkService {
             
             do {
                 let allGroupsResponse = try JSONDecoder().decode(
-                    AllGroupsResponse.self,
+                    GroupsResponse.self,
                     from: data)
                 completion(.success(allGroupsResponse.response.groups))
             } catch {

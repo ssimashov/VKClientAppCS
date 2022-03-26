@@ -21,7 +21,7 @@ class TestViewController: UIViewController {
     
 //    private var friends = [Friend0]()
     private var photos = [Photos]()
-    private var groups = [Groups]()
+    private var groups = [GroupsItems]()
    
     override func viewDidLoad() {
         super.viewDidLoad()

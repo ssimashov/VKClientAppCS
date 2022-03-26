@@ -11,7 +11,7 @@ class GroupsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var groups = [Groups](){
+    private var groups = [GroupsItems](){
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

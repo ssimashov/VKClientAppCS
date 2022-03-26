@@ -13,7 +13,7 @@ class AllGroupsViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     //    var sourceArray = [Groups]()
     
-    private var allGroups = [AllGroups](){
+    private var allGroups = [GroupsItems](){
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -134,23 +134,19 @@ extension AllGroupsViewController: UISearchBarDelegate {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
             let query = searchText
-
+            
             self.networkService.fetchAllGroups(query: query) { [weak self] result in
-            switch result {
-            case .success(let allGroups):
-                self?.allGroups = allGroups
-                print(allGroups)
-            case .failure(let error):
-                print(error)
+                switch result {
+                case .success(let allGroups):
+                    self?.allGroups = allGroups
+                    print(allGroups)
+                case .failure(let error):
+                    print(error)
+                }
             }
-        }
-            
-            
-            
-            
             
         })
-
+        
         self.tableView.reloadData()
         
     }

@@ -15,7 +15,7 @@ class FriendsViewController: UIViewController {
     
     //    var sourceArray = [Friend0]()
     //    var friendsArray = [Friend0]()
-    private var friends = [Friend0](){
+    private var friends = [FriendItem](){
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -23,7 +23,7 @@ class FriendsViewController: UIViewController {
         }
     }
     
-    private var filteredFriends = [Friend0]()
+    private var filteredFriends = [FriendItem]()
     private var isSearch: Bool = false
     
     

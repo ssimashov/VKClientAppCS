@@ -16,7 +16,7 @@ struct FriendsResponse: Codable {
 
 
 struct FriendsItemsResponse {
-    let friends: [Friend0]
+    let friends: [FriendItem]
 }
 
 extension FriendsItemsResponse: Codable {
@@ -25,7 +25,7 @@ extension FriendsItemsResponse: Codable {
     }
 }
 
-struct Friend0 {
+struct FriendItem {
     let friendID: Int
     let friendFirstName: String
     let friendLastName: String
@@ -33,7 +33,7 @@ struct Friend0 {
 }
 
 
-extension Friend0: Codable {
+extension FriendItem: Codable {
     enum CodingKeys: String, CodingKey {
         case friendID = "id"
         case friendFirstName = "first_name"

@@ -47,7 +47,7 @@ class CustomTableViewCell: UITableViewCell {
 //        nameLabel.text = friend.name
 //    }
 
-    func configure(model: Groups) {
+    func configure(model: GroupsItems) {
         self.nameLabel.text = model.groupName
         let imgUrl = URL(string: model.groupPhoto)
         let data = try? Data(contentsOf: imgUrl!)
@@ -56,7 +56,7 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
 
-    func configure(model: Friend0){
+    func configure(model: FriendItem){
         self.nameLabel.text = model.friendFirstName + " " + model.friendLastName
         let imgUrl = URL(string: model.friendPhoto)
         let data = try? Data(contentsOf: imgUrl!)
@@ -65,13 +65,13 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(model: AllGroups) {
-        self.nameLabel.text = model.groupName
-        let imgUrl = URL(string: model.groupPhoto)
-        let data = try? Data(contentsOf: imgUrl!)
-        if let imageData = data {
-            self.avatarImageView.image = UIImage(data: imageData)
-        }
-    }
+//    func configure(model: GroupsItems) {
+//        self.nameLabel.text = model.groupName
+//        let imgUrl = URL(string: model.groupPhoto)
+//        let data = try? Data(contentsOf: imgUrl!)
+//        if let imageData = data {
+//            self.avatarImageView.image = UIImage(data: imageData)
+//        }
+//    }
 }
 

@@ -15,7 +15,7 @@ struct GroupsResponse: Codable {
 
 
 struct GroupsItemsResponse {
-    let groups: [Groups]
+    let groups: [GroupsItems]
 }
 
 extension GroupsItemsResponse: Codable {
@@ -24,14 +24,14 @@ extension GroupsItemsResponse: Codable {
     }
 }
 
-struct Groups {
+struct GroupsItems {
     let groupID: Int
     let groupName: String
     let groupPhoto: String
 }
 
 
-extension Groups: Codable {
+extension GroupsItems: Codable {
     enum CodingKeys: String, CodingKey {
                case groupID = "id"
                case groupName = "name"
