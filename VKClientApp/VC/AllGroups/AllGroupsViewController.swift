@@ -10,8 +10,8 @@ import UIKit
 class AllGroupsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-//    var sourceArray = [Groups]()
+    @IBOutlet weak var searchBar: UISearchBar!
+    //    var sourceArray = [Groups]()
     
     private var allGroups = [AllGroups](){
         didSet {
@@ -21,12 +21,14 @@ class AllGroupsViewController: UIViewController {
         }
     }
     
-    let query = "test"
+//    private var query = "test"
+//    private var filteredGroups = [AllGroups]()
+    private var isSearch: Bool = false
     
     let customCellReuseIdentifier = "customCellReuseIdentifier"
     let heightCustomTableViewCell:CGFloat = 150
     
-    
+    private var timer = Timer()
     
     
 //    func groupFillData() {
@@ -70,15 +72,17 @@ class AllGroupsViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: customCellReuseIdentifier)
 //        groupFillData()
         
-        networkService.fetchAllGroups(query: query) { [weak self] result in
-            switch result {
-            case .success(let allGroups):
-                self?.allGroups = allGroups
-                print(allGroups)
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        networkService.fetchAllGroups(query: query) { [weak self] result in
+//            switch result {
+//            case .success(let allGroups):
+//                self?.allGroups = allGroups
+//                print(allGroups)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        searchBar.delegate = self
+//        filteredGroups = allGroups
     }
 }
 
@@ -89,13 +93,25 @@ extension AllGroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGroups.count
+//        if (isSearch){
+//            return filteredGroups.count
+//        }
+//        else {
+            return allGroups.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
     
-        cell.configure(model: allGroups[indexPath.row])
+//        if (isSearch){
+//            cell.configure(model: filteredGroups[indexPath.row])
+//        }
+//
+//        else {
+            cell.configure(model: allGroups[indexPath.row])
+//        }
+//
         return cell
     }
 
@@ -113,3 +129,29 @@ extension AllGroupsViewController: UITableViewDataSource {
     }
 
 
+extension AllGroupsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+            let query = searchText
+
+            self.networkService.fetchAllGroups(query: query) { [weak self] result in
+            switch result {
+            case .success(let allGroups):
+                self?.allGroups = allGroups
+                print(allGroups)
+            case .failure(let error):
+                print(error)
+            }
+        }
+            
+            
+            
+            
+            
+        })
+
+        self.tableView.reloadData()
+        
+    }
+}

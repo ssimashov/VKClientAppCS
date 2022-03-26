@@ -262,27 +262,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="30s-ny-iLj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="146" width="414" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tx0-sw-dcb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JeU-PJ-7Ah"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="30s-ny-iLj" firstAttribute="top" secondItem="tx0-sw-dcb" secondAttribute="bottom" constant="7" id="9OZ-5g-yo6"/>
+                            <constraint firstItem="tx0-sw-dcb" firstAttribute="trailing" secondItem="JeU-PJ-7Ah" secondAttribute="trailing" id="PpJ-fj-W5P"/>
+                            <constraint firstItem="tx0-sw-dcb" firstAttribute="top" secondItem="JeU-PJ-7Ah" secondAttribute="top" id="U2z-Tv-wUP"/>
                             <constraint firstItem="JeU-PJ-7Ah" firstAttribute="trailing" secondItem="30s-ny-iLj" secondAttribute="trailing" id="aLs-cD-s7j"/>
                             <constraint firstItem="JeU-PJ-7Ah" firstAttribute="bottom" secondItem="30s-ny-iLj" secondAttribute="bottom" id="njf-S3-0me"/>
-                            <constraint firstItem="30s-ny-iLj" firstAttribute="top" secondItem="JeU-PJ-7Ah" secondAttribute="top" id="uOa-Af-v24"/>
+                            <constraint firstItem="tx0-sw-dcb" firstAttribute="leading" secondItem="JeU-PJ-7Ah" secondAttribute="leading" id="wFi-ak-eyO"/>
                             <constraint firstItem="30s-ny-iLj" firstAttribute="leading" secondItem="JeU-PJ-7Ah" secondAttribute="leading" id="xAC-XC-tCk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wBy-s5-PYh"/>
                     <connections>
+                        <outlet property="searchBar" destination="tx0-sw-dcb" id="yRa-NR-PtM"/>
                         <outlet property="tableView" destination="30s-ny-iLj" id="LWA-kE-YCV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXM-R0-ayr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103" y="3"/>
+            <point key="canvasLocation" x="3102.898550724638" y="2.6785714285714284"/>
         </scene>
         <!--Friends-->
         <scene sceneID="OAU-EL-bbc">

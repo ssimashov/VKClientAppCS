@@ -13,7 +13,7 @@ class FriendsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-//    var sourceArray = [Friend0]()
+    //    var sourceArray = [Friend0]()
     //    var friendsArray = [Friend0]()
     private var friends = [Friend0](){
         didSet {
@@ -23,8 +23,8 @@ class FriendsViewController: UIViewController {
         }
     }
     
-    var filteredFriends = [Friend0]()
-    var isSearch: Bool = false
+    private var filteredFriends = [Friend0]()
+    private var isSearch: Bool = false
     
     
     let customCellReuseIdentifier = "customCellReuseIdentifier"
@@ -43,8 +43,8 @@ class FriendsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-
-                
+        
+        
         
         networkService.fetchUsers(userID: userID) { [weak self] result in
             switch result {
@@ -86,7 +86,7 @@ extension FriendsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (isSearch){
-        return filteredFriends.count
+            return filteredFriends.count
         }
         else {
             return friends.count
@@ -98,7 +98,7 @@ extension FriendsViewController: UITableViewDataSource {
         
         if (isSearch){
             cell.configure(model: filteredFriends[indexPath.row])
-        //        cell.configure(friend: friendsArray[indexPath.row])
+            //        cell.configure(friend: friendsArray[indexPath.row])
         }
         
         else {
@@ -122,8 +122,8 @@ extension FriendsViewController: UITableViewDelegate {
             guard
                 let vc = segue.destination as? GalleryViewController,
                 let indexPath = tableView.indexPathForSelectedRow
-                        else { return }
-                vc.friendID = friends[indexPath.row].friendID
+            else { return }
+            vc.friendID = friends[indexPath.row].friendID
         }
     }
     
@@ -138,7 +138,7 @@ extension FriendsViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             filteredFriends = friends
             isSearch = false
-         
+            
         }
         else {
             isSearch = true
