@@ -73,5 +73,14 @@ class CustomTableViewCell: UITableViewCell {
 //            self.avatarImageView.image = UIImage(data: imageData)
 //        }
 //    }
+    
+    func configure(model: RealmAllGroups) {
+        self.nameLabel.text = model.groupName
+        let imgUrl = URL(string: model.groupPhoto)
+        let data = try? Data(contentsOf: imgUrl!)
+        if let imageData = data {
+            self.avatarImageView.image = UIImage(data: imageData)
+        }
+    }
 }
 

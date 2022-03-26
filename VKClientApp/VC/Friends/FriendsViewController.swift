@@ -15,6 +15,7 @@ class FriendsViewController: UIViewController {
     
     //    var sourceArray = [Friend0]()
     //    var friendsArray = [Friend0]()
+    
     private var friends = [FriendItem](){
         didSet {
             DispatchQueue.main.async {
