@@ -73,9 +73,9 @@ extension AllGroupsViewController: UITableViewDelegate {
         defer { tableView.deselectRow(
             at: indexPath,
             animated: true) }
-//        performSegue(
-//            withIdentifier: "addGroup",
-//            sender: nil)
+            performSegue(
+            withIdentifier: "addGroup",
+            sender: nil)
     }
 }
 

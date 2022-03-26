@@ -286,11 +286,13 @@
                     <connections>
                         <outlet property="searchBar" destination="tx0-sw-dcb" id="yRa-NR-PtM"/>
                         <outlet property="tableView" destination="30s-ny-iLj" id="LWA-kE-YCV"/>
+                        <segue destination="7Nl-rT-Qsa" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="57w-T1-Ze8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXM-R0-ayr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="7Nl-rT-Qsa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3102.898550724638" y="2.6785714285714284"/>
+            <point key="canvasLocation" x="3103" y="3"/>
         </scene>
         <!--Friends-->
         <scene sceneID="OAU-EL-bbc">
