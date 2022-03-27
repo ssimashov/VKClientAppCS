@@ -29,7 +29,7 @@ final class NetworkService {
         return constructor
     }()
     
-    func fetchUsers(userID: Int, completion: @escaping (Result<[FriendItem], Error>) -> Void){
+    func fetchFriends(userID: Int, completion: @escaping (Result<[FriendItem], Error>) -> Void){
         
         var constructor = urlConstructor
         let userID = userID

@@ -37,7 +37,7 @@ class GroupsViewController: UIViewController {
         }
     }
 
-    private  var groups: Results<RealmGroups>? = try? RealmService.load(typeOf: RealmGroups.self){
+    private var groups: Results<RealmGroups>? = try? RealmService.load(typeOf: RealmGroups.self){
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
