@@ -6,60 +6,37 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AllGroupsViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
     
-    var sourceArray = [Group]()
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
+    var allGroups: Results<RealmAllGroups>? = try? RealmService.load(typeOf: RealmAllGroups.self){
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    private var timer = Timer()
     
     let customCellReuseIdentifier = "customCellReuseIdentifier"
     let heightCustomTableViewCell:CGFloat = 150
     
     
-    
-    
-    func groupFillData() {
-        let group1 = Group(name: "Президенты", avatar: "GroupAvatar1")
-        let group2 = Group(name: "Министры", avatar: "GroupAvatar2")
-        let group3 = Group(name: "Любители чая", avatar: "GroupAvatar3")
-        let group4 = Group(name: "Paradise", avatar: "GroupAvatar4")
-        let group5 = Group(name: "Странные", avatar: "GroupAvatar5")
-        let group6 = Group(name: "Цветоводы", avatar: "GroupAvatar6")
-        let group7 = Group(name: "Осень", avatar: "GroupAvatar7")
-        let group8 = Group(name: "Красивые фото", avatar: "GroupAvatar8")
-        let group9 = Group(name: "Цитрус", avatar: "GroupAvatar9")
-        let group10 = Group(name: "Франция", avatar: "GroupAvatar10")
-        let group11 = Group(name: "Girls", avatar: "GroupAvatar11")
-        let group12 = Group(name: "Ягода", avatar: "GroupAvatar12")
-        let group13 = Group(name: "Бабочки", avatar: "GroupAvatar13")
-  
-    
-        sourceArray.append(group1)
-        sourceArray.append(group2)
-        sourceArray.append(group3)
-        sourceArray.append(group4)
-        sourceArray.append(group5)
-        sourceArray.append(group6)
-        sourceArray.append(group7)
-        sourceArray.append(group8)
-        sourceArray.append(group9)
-        sourceArray.append(group10)
-        sourceArray.append(group11)
-        sourceArray.append(group12)
-        sourceArray.append(group13)
-     
-    }
+    private let networkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: customCellReuseIdentifier)
-        groupFillData()
+        
+        searchBar.delegate = self
     }
-
-
 }
 
 extension AllGroupsViewController: UITableViewDataSource {
@@ -69,13 +46,19 @@ extension AllGroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sourceArray.count
+        
+        return allGroups?.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-    
-        cell.configure(group: sourceArray[indexPath.row])
+        guard
+            let currentGroup = allGroups?[indexPath.row],
+            let cell = tableView.dequeueReusableCell(withIdentifier: customCellReuseIdentifier, for: indexPath) as? CustomTableViewCell
+        else {return UITableViewCell()}
+        
+        cell.configure(model: currentGroup)
+        
         return cell
     }
     
@@ -84,12 +67,54 @@ extension AllGroupsViewController: UITableViewDataSource {
     }
 }
 
-    extension AllGroupsViewController: UITableViewDelegate {
-        
-  
+extension AllGroupsViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(sourceArray[indexPath.row].name)
-        NotificationCenter.default.post(name: NSNotification.Name("groupSelectedNotification"), object: sourceArray[indexPath.row])
+        defer { tableView.deselectRow(
+            at: indexPath,
+            animated: true) }
+            performSegue(
+            withIdentifier: "addGroup",
+            sender: nil)
     }
 }
 
+
+extension AllGroupsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        allGroups?.forEach({ deleteGroup in
+            do {
+                let realm = try Realm()
+                let currentGroup = realm.objects(RealmAllGroups.self).filter("groupId == %@", deleteGroup.groupId)
+                try RealmService.delete(object: currentGroup)
+                tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        })
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+            let query = searchText
+            
+            self.networkService.fetchAllGroups(query: query.lowercased())
+            {[weak self] result in
+                switch result {
+                case .success(let allGroups):
+                    let realmGroup = allGroups.map { RealmAllGroups(allGroupsName: query, groups: $0)}
+                    DispatchQueue.main.async {
+                        do {
+                            try RealmService.save(items: realmGroup)
+                            self?.allGroups = try RealmService.load(typeOf: RealmAllGroups.self)
+                            self?.tableView.reloadData()
+                        } catch {
+                            print(error)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        })
+    }
+}
