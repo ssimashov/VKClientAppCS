@@ -23,10 +23,10 @@ class FriendsViewController: UIViewController {
     }
     
     var filteredFriends = [RealmFriends]()
-
+    
     private var isSearch: Bool = false
     
-//    private var timer = Timer()
+    //    private var timer = Timer()
     
     let customCellReuseIdentifier = "customCellReuseIdentifier"
     let heightCustomTableViewCell:CGFloat = 150
@@ -107,20 +107,20 @@ extension FriendsViewController: UITableViewDelegate {
         else { return }
         
         guard let vc = segue.destination as? GalleryViewController,
-        let currentFriend = friends?[indexPath.row]
+              let currentFriend = friends?[indexPath.row]
         else { return }
         vc.friendID = currentFriend.friendId
-        }
-        
-//        if segue.identifier == toGallerySegue {
-//            guard
-//                let vc = segue.destination as? GalleryViewController,
-//                let indexPath = tableView.indexPathForSelectedRow
-//            else { return }
-//            vc.friendID = currentFriend.friendId
-//        }
+    }
     
-
+    //        if segue.identifier == toGallerySegue {
+    //            guard
+    //                let vc = segue.destination as? GalleryViewController,
+    //                let indexPath = tableView.indexPathForSelectedRow
+    //            else { return }
+    //            vc.friendID = currentFriend.friendId
+    //        }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: toGallerySegue, sender: nil)
     }
@@ -130,7 +130,7 @@ extension FriendsViewController: UITableViewDelegate {
 extension FriendsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-//
+            //
         }
         else {
             isSearch = true

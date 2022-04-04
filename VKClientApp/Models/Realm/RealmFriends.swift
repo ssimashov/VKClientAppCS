@@ -10,7 +10,7 @@ import RealmSwift
 
 class RealmFriends: Object{
     @Persisted(primaryKey: true) var friendId: Int
-    @Persisted var friendFirstName: String = ""
+    @Persisted(indexed: true) var friendFirstName: String = ""
     @Persisted var friendLastName: String = ""
     @Persisted var friendPhoto: String = ""
     }
